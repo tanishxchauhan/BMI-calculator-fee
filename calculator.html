@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            background: url(wallpaperflare.com_wallpaper.jpg) no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: rgb(10, 234, 10);
+        }
+        header {
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(90,9,121,1) 67%, rgba(87,15,125,1) 69%, rgba(0,212,255,1) 100%);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .calculator {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .result, .tips {
+            margin-top: 20px;
+            color: white;
+        }
+        footer {
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(90,9,121,1) 67%, rgba(87,15,125,1) 69%, rgba(0,212,255,1) 100%);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: red;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BMI Calculator</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="BMI.html">What is BMI</a></li>
+                <li><a href="about us.html">About us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="calculator">
+            <h2>Calculate Your BMI</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="weight" class="form-label">Weight:</label>
+                    <input type="number" id="weight" name="weight" class="form-control" aria-label="Enter your weight" required>
+                    <select id="weight-unit" class="form-select mt-2">
+                        <option value="kg">Kilograms (kg)</option>
+                        <option value="lbs">Pounds (lbs)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="height" class="form-label">Height:</label>
+                    <input type="number" id="height" name="height" class="form-control" aria-label="Enter your height" required>
+                    <select id="height-unit" class="form-select mt-2">
+                        <option value="cm">Centimeters (cm)</option>
+                        <option value="m">Meters (m)</option>
+                    </select>
+                </div>
+                <center><button type="button" class="btn btn-primary" id="calculate-bmi">Calculate</button></center>
+            </form>
+            <div class="result">
+                <p id="bmi-result">Your BMI result will appear here.</p>
+            </div>
+            <div class="tips">
+                <p id="healthy-tips"></p>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <p>&copy; 2024 BMI Calculator. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('calculate-bmi').addEventListener('click', function() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const weightUnit = document.getElementById('weight-unit').value;
+            const heightUnit = document.getElementById('height-unit').value;
+
+            if (!document.getElementById('weight').value || !document.getElementById('height').value) {
+                document.getElementById('bmi-result').textContent = 'Please fill out all fields.';
+                document.getElementById('healthy-tips').textContent = '';
+                return;
+            }
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                document.getElementById('bmi-result').textContent = 'Please enter valid positive values for weight and height.';
+                document.getElementById('healthy-tips').textContent = '';
+                return;
+            }
+
+            const weightInKg = weightUnit === 'lbs' ? weight * 0.453592 : weight;
+            const heightInMeters = heightUnit === 'cm' ? height / 100 : height;
+            const bmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
+
+            const tips = {
+                underweight: [
+                    "Eat more frequently and include nutrient-dense snacks.",
+                    "Include more healthy fats like avocados and nuts.",
+                    "Add strength training to your routine to build muscle.",
+                    "Focus on calorie-rich but healthy foods like whole grains.",
+                    "Drink smoothies or shakes to increase calorie intake."
+                ],
+                normal: [
+                    "Maintain a balanced diet with plenty of fruits and vegetables.",
+                    "Stay active with regular exercise to keep your weight stable.",
+                    "Drink plenty of water to stay hydrated.",
+                    "Limit processed and high-sugar foods.",
+                    "Get regular health check-ups to monitor your health."
+                ],
+                overweight: [
+                    "Incorporate more physical activity into your daily routine.",
+                    "Focus on portion control and avoid overeating.",
+                    "Opt for whole foods instead of processed ones.",
+                    "Reduce sugary drinks and opt for water or tea.",
+                    "Consult a nutritionist for personalized advice."
+                ],
+                obesity: [
+                    "Seek professional medical advice for weight management.",
+                    "Adopt a healthy, low-calorie meal plan.",
+                    "Avoid crash diets; aim for sustainable habits.",
+                    "Incorporate daily moderate exercise like walking.",
+                    "Monitor your progress and celebrate small wins."
+                ]
+            };
+
+            let category = '';
+            let randomTip = '';
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                randomTip = tips.underweight[Math.floor(Math.random() * tips.underweight.length)];
+            } else if (bmi < 24.9) {
+                category = 'Normal weight';
+                randomTip = tips.normal[Math.floor(Math.random() * tips.normal.length)];
+            } else if (bmi < 29.9) {
+                category = 'Overweight';
+                randomTip = tips.overweight[Math.floor(Math.random() * tips.overweight.length)];
+            } else {
+                category = 'Obesity';
+                randomTip = tips.obesity[Math.floor(Math.random() * tips.obesity.length)];
+            }
+
+            document.getElementById('bmi-result').textContent = `Your BMI is ${bmi} (${category}).`;
+            document.getElementById('healthy-tips').textContent = `Tip: ${randomTip}`;
+        });
+    </script>
+</body>
+</html>

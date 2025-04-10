@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            background: url(wallpaperflare.com_wallpaper.jpg) no-repeat center center fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background-size: cover;
+        }
+        header {
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(90,9,121,1) 67%, rgba(87,15,125,1) 69%, rgba(0,212,255,1) 100%);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: red;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .intro img {
+            max-width: 100%;
+            height: auto;
+        }
+        footer {
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(90,9,121,1) 67%, rgba(87,15,125,1) 69%, rgba(0,212,255,1) 100%);
+            color: white;
+            text-align: center;
+            padding: 10px ;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            nav ul li a {
+                font-size: 16px;
+            }
+            .intro {
+                padding: 10px;
+            }
+            h3 {
+                font-size: 1.5em;
+            }
+            footer {
+                font-size: 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 24px;
+            }
+            nav ul li a {
+                font-size: 14px;
+            }
+            .intro {
+                padding: 5px;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            footer {
+                font-size: 10px;
+            }
+        }
+        .intro{
+    animation: zoomIn 1s ease-out forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the BMI Calculator</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="BMI.html">What is BMI</a></li>
+                <li><a href="about us.html">About us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="intro">
+            <h3>What is BMI?</h3>
+            <p>Body Mass Index (BMI) is a measure of body fat based on height and weight. The Calculator calculates BMI using the formula:</p>
+            <img src="bmi.jpg" alt="BMI Explanation">
+            <img src="formula.png" height="150" id="formula" alt="BMI Formula">
+            <h3>About Our BMI Calculator</h3>
+            <p>The resulting BMI value categorizes a person as underweight, normal weight, overweight, or obese based on standard health guidelines. While widely used, it provides only a general assessment and does not account for factors like muscle mass or fat distribution.</p>
+            <p>Here is the detailed table that shows your BMI range according to your height:</p>
+            <img src="bmi-chart.jpg" alt="BMI Chart">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 BMI Calculator. All rights reserved.</p>
+    </footer>
+</body>
+</html>
